@@ -1,0 +1,14 @@
+[Unit]
+Description=Monitorix
+Wants=local-fs.target
+
+[Service]
+Type=forking
+PIDFile=/run/monitorix.pid
+ExecStart=/usr/bin/monitorix -c /etc/monitorix.conf -p /run/monitorix.pid
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
