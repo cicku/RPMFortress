@@ -6,7 +6,7 @@ Release:           1%{?dist}
 License:           GPLv2
 Group:             Applications/System
 URL:               http://www.monitorix.org
-Source:            %{name}-%{version}.tar.gz
+Source0:           http://www.monitorix.org/%{name}-%{version}.tar.gz
 #BuildRoot:         %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires: rrdtool
@@ -28,7 +28,7 @@ created to be used under production Linux/UNIX servers, but due to its
 simplicity and small size may also be used on embedded devices as well. 
 
 %prep
-%setup
+%setup -q
 
 %build
 
