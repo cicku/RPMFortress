@@ -6,20 +6,21 @@ Summary:	       A free, open source, lightweight system monitoring tool
 Group:             Applications/System
 License:           GPLv2
 URL:               http://www.monitorix.org
-Source0:           http://www.monitorix.org/%{name}-%{version}.tar.gz
-#BuildRoot:         %{_tmppath}/%{name}-%{version}-%{release}-root
 
-Requires: rrdtool
-Requires: rrdtool-perl
-Requires: perl
-Requires: perl-libwww-perl
-Requires: perl-MailTools
-Requires: perl-MIME-Lite
-Requires: perl-CGI
-Requires: perl-DBI
-Requires: perl-XML-Simple
-Requires: perl-Config-General
-Requires: perl-HTTP-Server-Simple
+Source0:           http://www.monitorix.org/%{name}-%{version}.tar.gz
+#BuildRoot:        %{_tmppath}/%{name}-%{version}-%{release}-root
+
+Requires:          rrdtool
+Requires:          rrdtool-perl
+Requires:          perl
+Requires:          perl-libwww-perl
+Requires:          perl-MailTools
+Requires:          perl-MIME-Lite
+Requires:          perl-CGI
+Requires:          perl-DBI
+Requires:          perl-XML-Simple
+Requires:          perl-Config-General
+Requires:          perl-HTTP-Server-Simple
 
 %description
 Monitorix is a free, open source, lightweight system monitoring tool designed
@@ -84,7 +85,7 @@ rm -rf %{buildroot}
 /sbin/chkconfig --add monitorix
 
 %files
-%defattr(-, root, root)
+#%defattr(-, root, root)
 %{_initrddir}/monitorix
 %config(noreplace) %{_sysconfdir}/logrotate.d/monitorix
 %config(noreplace) %{_sysconfdir}/sysconfig/monitorix
