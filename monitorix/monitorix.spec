@@ -81,9 +81,6 @@ if [ $1 -ge 1 ]; then
     /sbin/service monitorix condrestart &>/dev/null || :
 fi
 
-%clean
-rm -rf %{buildroot}
-
 %post
 /sbin/chkconfig --add monitorix
 
