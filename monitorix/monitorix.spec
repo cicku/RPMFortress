@@ -3,7 +3,6 @@ Version:   	       3.1.0
 Release:           1%{?dist}
 Summary:	       A free, open source, lightweight system monitoring tool
 
-Group:             Applications/System
 License:           GPLv2
 URL:               http://www.monitorix.org
 
