@@ -5,6 +5,7 @@ Wants=local-fs.target
 
 [Service]
 Type=forking
+EnvironmentFiles=-/etc/sysconfig/monitorix
 PIDFile=/run/monitorix.pid
 ExecStart=/usr/bin/monitorix -c /etc/monitorix.conf -p /run/monitorix.pid
 ExecReload=/bin/kill -s HUP $MAINPID

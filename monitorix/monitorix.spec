@@ -8,6 +8,7 @@ License:           GPLv2
 URL:               http://www.monitorix.org
 
 Source0:           http://www.monitorix.org/%{name}-%{version}.tar.gz
+Source1:           monitorix.service
 #BuildRoot:        %{_tmppath}/%{name}-%{version}-%{release}-root
 
 Requires:          rrdtool
