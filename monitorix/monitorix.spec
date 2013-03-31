@@ -9,7 +9,9 @@ URL:               http://www.monitorix.org
 
 Source0:           http://www.monitorix.org/%{name}-%{version}.tar.gz
 Source1:           monitorix.service
-#BuildRoot:        %{_tmppath}/%{name}-%{version}-%{release}-root
+Source2:           monitorix.logrotate
+
+BuildRequires:     systemd
 
 Requires:          rrdtool
 Requires:          rrdtool-perl
@@ -91,6 +93,9 @@ rm -rf %{buildroot}
 %config(noreplace) %{_sysconfdir}/logrotate.d/monitorix
 %config(noreplace) %{_sysconfdir}/sysconfig/monitorix
 %config(noreplace) %{_sysconfdir}/monitorix.conf
+%{_mandir}/man5/monitorix.conf.5.gz
+%{_mandir}/man8/monitorix.8.gz
+%{_unitdir}/{%SOURCE1}
 %{_bindir}/monitorix
 %{_libdir}/monitorix/*.pm
 %{_datadir}/monitorix/logo_top.png
@@ -100,10 +105,8 @@ rm -rf %{buildroot}
 %attr(777,root,root) %{_datadir}/monitorix/imgs
 %attr(755,root,root) %{_localstatedir}/lib/monitorix/usage
 %config(noreplace) %{_localstatedir}/lib/monitorix/reports/*.html
-%doc %{_mandir}/man5/monitorix.conf.5.gz
-%doc %{_mandir}/man8/monitorix.8.gz
-%doc Changes COPYING README README.nginx README.FreeBSD README.OpenBSD README.NetBSD docs/monitorix-alert.sh docs/monitorix-apache.conf docs/monitorix-lighttpd.conf docs/monitorix.service
+%doc Changes COPYING README README.nginx docs/monitorix-alert.sh docs/monitorix-apache.conf docs/monitorix-lighttpd.conf %{SOURCE1}
 
 %changelog
-* Thu Mar 29 2013 Christopher Meng <rpm@cicku.me>
-- Initial Package of 3.1.0
+* Thu Mar 29 2013 Christopher Meng <rpm@cicku.me> - 3.1.0
+- Initial Package
