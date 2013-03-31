@@ -1,10 +1,10 @@
-
-Summary:	       A free, open source, lightweight system monitoring tool
 Name:              monitorix
 Version:   	       3.1.0
 Release:           1%{?dist}
-License:           GPLv2
+Summary:	       A free, open source, lightweight system monitoring tool
+
 Group:             Applications/System
+License:           GPLv2
 URL:               http://www.monitorix.org
 Source0:           http://www.monitorix.org/%{name}-%{version}.tar.gz
 #BuildRoot:         %{_tmppath}/%{name}-%{version}-%{release}-root
