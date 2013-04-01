@@ -39,30 +39,31 @@ simplicity and small size may also be used on embedded devices as well.
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_sysconfdir}/logrotate.d
-install -m 0644 docs/monitorix.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/monitorix
+install -m 644 docs/monitorix.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/monitorix
 mkdir -p %{buildroot}%{_sysconfdir}/sysconfig
-install -m 0644 docs/monitorix.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/monitorix
+install -m 644 docs/monitorix.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/monitorix
 mkdir -p %{buildroot}%{_sysconfdir}
-install -m 0644 monitorix.conf %{buildroot}%{_sysconfdir}/monitorix.conf
+install -m 644 monitorix.conf %{buildroot}%{_sysconfdir}/monitorix.conf
 mkdir -p %{buildroot}%{_bindir}
-install -m 0755 monitorix %{buildroot}%{_bindir}/monitorix
+install -m 755 monitorix %{buildroot}%{_bindir}/monitorix
 mkdir -p %{buildroot}%{_libdir}/monitorix
-install -m 0644 lib/*.pm %{buildroot}%{_libdir}/monitorix
+install -m 644 lib/*.pm %{buildroot}%{_libdir}/monitorix
 mkdir -p %{buildroot}%{_datadir}/monitorix
-install -m 0644 logo_top.png %{buildroot}%{_datadir}/monitorix
-install -m 0644 logo_bot.png %{buildroot}%{_datadir}/monitorix
-install -m 0644 monitorixico.png %{buildroot}%{_datadir}/monitorix
+install -m 644 logo_top.png %{buildroot}%{_datadir}/monitorix
+install -m 644 logo_bot.png %{buildroot}%{_datadir}/monitorix
+install -m 644 monitorixico.png %{buildroot}%{_datadir}/monitorix
 mkdir -p %{buildroot}%{_datadir}/monitorix/imgs
 mkdir -p %{buildroot}%{_datadir}/monitorix/cgi
-install -m 0755 monitorix.cgi %{buildroot}%{_datadir}/monitorix/cgi
+install -m 755 monitorix.cgi %{buildroot}%{_datadir}/monitorix/cgi
 mkdir -p %{buildroot}%{_localstatedir}/lib/monitorix/reports
-install -m 0644 reports/*.html %{buildroot}%{_localstatedir}/lib/monitorix/reports
+install -m 644 reports/*.html %{buildroot}%{_localstatedir}/lib/monitorix/reports
 mkdir -p %{buildroot}%{_localstatedir}/lib/monitorix/usage
 mkdir -p %{buildroot}%{_mandir}/man5
 mkdir -p %{buildroot}%{_mandir}/man8
-install -m 0644 man/man5/monitorix.conf.5 %{buildroot}%{_mandir}/man5
-install -m 0644 man/man8/monitorix.8 %{buildroot}%{_mandir}/man8
-install -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/monitorix.service
+install -m 644 man/man5/monitorix.conf.5 %{buildroot}%{_mandir}/man5
+install -m 644 man/man8/monitorix.8 %{buildroot}%{_mandir}/man8
+mkdir -p %{buildroot}%{_unitdir}
+install -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/monitorix.service
 
 %post
 %systemd_post {%SOURCE1}
@@ -81,7 +82,7 @@ install -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/monitorix.service
 %config(noreplace) %{_localstatedir}/lib/monitorix/reports/*.html
 %{_mandir}/man5/monitorix.conf.5.gz
 %{_mandir}/man8/monitorix.8.gz
-%{_unitdir}/{%SOURCE1}
+%{_unitdir}/monitorix.service
 %{_bindir}/monitorix
 %{_libdir}/monitorix/*.pm
 %{_datadir}/monitorix/logo_top.png
