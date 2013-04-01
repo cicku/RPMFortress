@@ -10,19 +10,20 @@ Source0:           http://www.monitorix.org/%{name}-%{version}.tar.gz
 Source1:           monitorix.service
 Source2:           monitorix.logrotate
 
-BuildRequires:     systemd
-
-Requires:          rrdtool
-Requires:          rrdtool-perl
 Requires:          perl
+Requires:          perl-CGI
+Requires:          perl-Config-General
+Requires:          perl-DBI
+Requires:          perl-HTTP-Server-Simple
 Requires:          perl-libwww-perl
 Requires:          perl-MailTools
 Requires:          perl-MIME-Lite
-Requires:          perl-CGI
-Requires:          perl-DBI
 Requires:          perl-XML-Simple
-Requires:          perl-Config-General
-Requires:          perl-HTTP-Server-Simple
+Requires:          rrdtool
+Requires:          rrdtool-perl
+Requires(post):    systemd
+Requires(preun):   systemd
+Requires(postun):  systemd
 
 %description
 Monitorix is a free, open source, lightweight system monitoring tool designed
@@ -37,8 +38,6 @@ simplicity and small size may also be used on embedded devices as well.
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}%{_initrddir}
-install -m 0755 docs/monitorix.init %{buildroot}%{_initrddir}/monitorix
 mkdir -p %{buildroot}%{_sysconfdir}/logrotate.d
 install -m 0644 docs/monitorix.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/monitorix
 mkdir -p %{buildroot}%{_sysconfdir}/sysconfig
@@ -63,29 +62,18 @@ mkdir -p %{buildroot}%{_mandir}/man5
 mkdir -p %{buildroot}%{_mandir}/man8
 install -m 0644 man/man5/monitorix.conf.5 %{buildroot}%{_mandir}/man5
 install -m 0644 man/man8/monitorix.8 %{buildroot}%{_mandir}/man8
+install -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/monitorix.service
 
 %post
-if [ $1 -eq 1 ]; then
-    /sbin/chkconfig --add monitorix
-fi
+%systemd_post {%SOURCE1}
 
 %preun
-if [ $1 -eq 0 ]; then
-    /sbin/service monitorix stop &>/dev/null || :
-    /sbin/chkconfig --del monitorix
-fi
+%systemd_preun {%SOURCE1}
 
 %postun
-if [ $1 -ge 1 ]; then
-    /sbin/service monitorix condrestart &>/dev/null || :
-fi
-
-%post
-/sbin/chkconfig --add monitorix
+%systemd_postun_with_restart {%SOURCE1}
 
 %files
-#%defattr(-, root, root)
-%{_initrddir}/monitorix
 %config(noreplace) %{_sysconfdir}/logrotate.d/monitorix
 %config(noreplace) %{_sysconfdir}/sysconfig/monitorix
 %config(noreplace) %{_sysconfdir}/monitorix.conf
@@ -101,7 +89,7 @@ fi
 %attr(777,root,root) %{_datadir}/monitorix/imgs
 %attr(755,root,root) %{_localstatedir}/lib/monitorix/usage
 %config(noreplace) %{_localstatedir}/lib/monitorix/reports/*.html
-%doc Changes COPYING README README.nginx docs/monitorix-alert.sh docs/monitorix-apache.conf docs/monitorix-lighttpd.conf %{SOURCE1}
+%doc Changes COPYING README README.nginx docs/monitorix-alert.sh docs/monitorix-apache.conf docs/monitorix-lighttpd.conf
 
 %changelog
 * Thu Mar 29 2013 Christopher Meng <rpm@cicku.me> - 3.1.0
