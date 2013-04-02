@@ -12,15 +12,16 @@ Source2:           %{name}.logrotate
 
 BuildArch:         noarch
 BuildRequires:     systemd
-Requires:          perl
-Requires:          perl-CGI
-Requires:          perl-Config-General
-Requires:          perl-DBI
-Requires:          perl-HTTP-Server-Simple
-Requires:          perl-libwww-perl
+Requires:          perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
+Requires:          perl(CGI)
+Requires:          perl(Config::General)
+Requires:          perl(DBI)
+Requires:          perl(HTTP::Server::Simple) 
+Requires:          perl(LWP)
+#Requires:          perl-libwww-perl
 Requires:          perl-MailTools
-Requires:          perl-MIME-Lite
-Requires:          perl-XML-Simple
+Requires:          perl(MIME::Lite)
+Requires:          perl(XML::Simple)
 Requires:          rrdtool
 Requires:          rrdtool-perl
 Requires(post):    systemd
