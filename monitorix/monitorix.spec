@@ -18,7 +18,6 @@ Requires:          perl(Config::General)
 Requires:          perl(DBI)
 Requires:          perl(HTTP::Server::Simple) 
 Requires:          perl(LWP)
-#Requires:          perl-libwww-perl
 Requires:          perl-MailTools
 Requires:          perl(MIME::Lite)
 Requires:          perl(XML::Simple)
@@ -33,7 +32,7 @@ Requires(postun):  systemd
 Monitorix is a free, open source, lightweight system monitoring tool designed
 to monitor as many services and system resources as possible. It has been
 created to be used under production Linux/UNIX servers, but due to its
-simplicity and small size may also be used on embedded devices as well. 
+simplicity and small size may also be used on embedded devices as well.
 
 %prep
 %setup -q
@@ -41,20 +40,24 @@ simplicity and small size may also be used on embedded devices as well.
 %build
 
 %install
-install -p -D -m 644 docs/%{name}.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
+install -p -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
 install -p -D -m 644 docs/%{name}.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/%{name}
 install -p -D -m 644 %{name}.conf %{buildroot}%{_sysconfdir}/%{name}.conf
 install -p -D -m 755 %{name} %{buildroot}%{_bindir}/%{name}
+mkdir -p %{buildroot}%{_libdir}/monitorix
 install -p -D -m 644 lib/*.pm %{buildroot}%{_libdir}/%{name}
+mkdir -p %{buildroot}%{_datadir}/monitorix
 install -p -D -m 644 logo_top.png %{buildroot}%{_datadir}/%{name}
 install -p -D -m 644 logo_bot.png %{buildroot}%{_datadir}/%{name}
 install -p -D -m 644 %{name}ico.png %{buildroot}%{_datadir}/%{name}
 mkdir -p %{buildroot}%{_datadir}/%{name}/imgs
-mkdir -p %{buildroot}%{_datadir}/%{name}/cgi
+mkdir -p %{buildroot}%{_datadir}/monitorix/cgi
 install -p -D -m 755 %{name}.cgi %{buildroot}%{_datadir}/%{name}/cgi
 mkdir -p %{buildroot}%{_localstatedir}/lib/%{name}/reports
 install -p -D -m 644 reports/*.html %{buildroot}%{_localstatedir}/lib/%{name}/reports
 mkdir -p %{buildroot}%{_localstatedir}/lib/%{name}/usage
+mkdir -p %{buildroot}%{_mandir}/man5
+mkdir -p %{buildroot}%{_mandir}/man8
 install -p -D -m 644 man/man5/%{name}.conf.5 %{buildroot}%{_mandir}/man5
 install -p -D -m 644 man/man8/%{name}.8 %{buildroot}%{_mandir}/man8
 install -p -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
