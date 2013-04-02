@@ -41,32 +41,23 @@ simplicity and small size may also be used on embedded devices as well.
 %build
 
 %install
-mkdir -p %{buildroot}%{_sysconfdir}/logrotate.d
-install -m 644 docs/%{name}.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
-mkdir -p %{buildroot}%{_sysconfdir}/sysconfig
-install -m 644 docs/%{name}.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/%{name}
-mkdir -p %{buildroot}%{_sysconfdir}
-install -m 644 %{name}.conf %{buildroot}%{_sysconfdir}/%{name}.conf
-mkdir -p %{buildroot}%{_bindir}
-install -m 755 %{name} %{buildroot}%{_bindir}/%{name}
-mkdir -p %{buildroot}%{_libdir}/%{name}
-install -m 644 lib/*.pm %{buildroot}%{_libdir}/%{name}
-mkdir -p %{buildroot}%{_datadir}/%{name}
-install -m 644 logo_top.png %{buildroot}%{_datadir}/%{name}
-install -m 644 logo_bot.png %{buildroot}%{_datadir}/%{name}
-install -m 644 %{name}ico.png %{buildroot}%{_datadir}/%{name}
+install -p -D -m 644 docs/%{name}.logrotate %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
+install -p -D -m 644 docs/%{name}.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/%{name}
+install -p -D -m 644 %{name}.conf %{buildroot}%{_sysconfdir}/%{name}.conf
+install -p -D -m 755 %{name} %{buildroot}%{_bindir}/%{name}
+install -p -D -m 644 lib/*.pm %{buildroot}%{_libdir}/%{name}
+install -p -D -m 644 logo_top.png %{buildroot}%{_datadir}/%{name}
+install -p -D -m 644 logo_bot.png %{buildroot}%{_datadir}/%{name}
+install -p -D -m 644 %{name}ico.png %{buildroot}%{_datadir}/%{name}
 mkdir -p %{buildroot}%{_datadir}/%{name}/imgs
 mkdir -p %{buildroot}%{_datadir}/%{name}/cgi
-install -m 755 %{name}.cgi %{buildroot}%{_datadir}/%{name}/cgi
+install -p -D -m 755 %{name}.cgi %{buildroot}%{_datadir}/%{name}/cgi
 mkdir -p %{buildroot}%{_localstatedir}/lib/%{name}/reports
-install -m 644 reports/*.html %{buildroot}%{_localstatedir}/lib/%{name}/reports
+install -p -D -m 644 reports/*.html %{buildroot}%{_localstatedir}/lib/%{name}/reports
 mkdir -p %{buildroot}%{_localstatedir}/lib/%{name}/usage
-mkdir -p %{buildroot}%{_mandir}/man5
-mkdir -p %{buildroot}%{_mandir}/man8
-install -m 644 man/man5/%{name}.conf.5 %{buildroot}%{_mandir}/man5
-install -m 644 man/man8/%{name}.8 %{buildroot}%{_mandir}/man8
-mkdir -p %{buildroot}%{_unitdir}
-install -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
+install -p -D -m 644 man/man5/%{name}.conf.5 %{buildroot}%{_mandir}/man5
+install -p -D -m 644 man/man8/%{name}.8 %{buildroot}%{_mandir}/man8
+install -p -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 
 %post
 %systemd_post {%SOURCE1}
@@ -82,7 +73,7 @@ install -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 %config(noreplace) %{_sysconfdir}/logrotate.d/%{name}
 %config(noreplace) %{_sysconfdir}/sysconfig/%{name}
 %config(noreplace) %{_sysconfdir}/%{name}.conf
-%config(noreplace) %{_localstatedir}/lib/%{name}/reports/*.html
+%{_localstatedir}/lib/%{name}/reports/*.html
 %{_mandir}/man5/%{name}.conf.5*
 %{_mandir}/man8/%{name}.8*
 %{_unitdir}/%{name}.service
