@@ -17,7 +17,7 @@ Requires:          perl(CGI)
 Requires:          perl(Config::General)
 Requires:          perl(DBI)
 Requires:          perl(HTTP::Server::Simple) 
-Requires:          perl(LWP)
+Requires:          perl-libwww-perl
 Requires:          perl-MailTools
 Requires:          perl(MIME::Lite)
 Requires:          perl(XML::Simple)
