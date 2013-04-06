@@ -1,6 +1,6 @@
 Name:              monitorix
 Version:           3.1.0
-Release:           2%{?dist}
+Release:           3%{?dist}
 Summary:           A free, open source, lightweight system monitoring tool
 
 License:           GPLv2+
@@ -12,21 +12,17 @@ Source2:           %{name}.logrotate
 
 BuildArch:         noarch
 BuildRequires:     systemd
+Requires:          logrotate
 Requires:          perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 Requires:          perl(CGI)
 Requires:          perl(Config::General)
 Requires:          perl(DBI)
-Requires:          perl(HTTP::Server::Simple) 
-Requires:          perl-libwww-perl
-Requires:          perl-MailTools
-Requires:          perl(MIME::Lite)
+Requires:          perl(HTTP::Server::Simple)
 Requires:          perl(XML::Simple)
 Requires:          rrdtool
-Requires:          rrdtool-perl
 Requires(post):    systemd
 Requires(preun):   systemd
 Requires(postun):  systemd
-
 
 %description
 Monitorix is a free, open source, lightweight system monitoring tool designed
@@ -36,6 +32,13 @@ simplicity and small size may also be used on embedded devices as well.
 
 %prep
 %setup -q
+
+#Patch the shebangs
+sed -i 's|/usr/bin/env perl|/usr/bin/perl|g' monitorix
+sed -i 's|/usr/bin/env perl|/usr/bin/perl|g' monitorix.cgi
+
+#Patch mail.pm for temporary use
+sed -i '1 d' lib/mail.pm
 
 %build
 
@@ -86,12 +89,15 @@ install -p -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 %{_datadir}/%{name}/logo_bot.png
 %{_datadir}/%{name}/%{name}ico.png
 %{_datadir}/%{name}/cgi/%{name}.cgi
-%attr(777,root,root) %{_datadir}/%{name}/imgs
+%attr(755,nobody,nobody) %{_datadir}/%{name}/imgs
 %attr(755,root,root) %{_localstatedir}/lib/%{name}/usage
 
 %changelog
-* Tue Apr 2 2013 Christopher Meng <rpm@cicku.me> - 3.1.0-2
+* Sat Apr 06 2013 Christopher Meng &lt;rpm@cicku.me&gt; - 3.1.0-3
+- Errors fixed.
+
+* Tue Apr 02 2013 Christopher Meng &lt;rpm@cicku.me&gt; - 3.1.0-2
 - Fixed review bugs(BZ#947071)
 
-* Mon Apr 1 2013 Christopher Meng <rpm@cicku.me> - 3.1.0-1
+* Mon Apr 01 2013 Christopher Meng &lt;rpm@cicku.me&gt; - 3.1.0-1
 - Initial Package.
