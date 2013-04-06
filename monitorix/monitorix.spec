@@ -93,11 +93,11 @@ install -p -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 %attr(755,root,root) %{_localstatedir}/lib/%{name}/usage
 
 %changelog
-* Sat Apr 06 2013 Christopher Meng &lt;rpm@cicku.me&gt; - 3.1.0-3
+* Sat Apr 06 2013 Christopher Meng <rpm@cicku.me> - 3.1.0-3
 - Errors fixed.
 
-* Tue Apr 02 2013 Christopher Meng &lt;rpm@cicku.me&gt; - 3.1.0-2
+* Tue Apr 02 2013 Christopher Meng <rpm@cicku.me> - 3.1.0-2
 - Fixed review bugs(BZ#947071)
 
-* Mon Apr 01 2013 Christopher Meng &lt;rpm@cicku.me&gt; - 3.1.0-1
+* Mon Apr 01 2013 Christopher Meng <rpm@cicku.me> - 3.1.0-1
 - Initial Package.
