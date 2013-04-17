@@ -1,5 +1,5 @@
 Name:               reposurgeon
-Version:            2.32
+Version:            2.33
 Release:            1%{?dist}
 Summary:            SCM Repository Manipulation Tool
 Source:             http://www.catb.org/~esr/reposurgeon/%{name}-%{version}.tar.gz
@@ -41,5 +41,8 @@ install -p -D -m 644 repodiffer.1 "%{buildroot}%{_mandir}/man1/repodiffer.1"
 %doc %{_mandir}/man1/repopuller.1*
 
 %changelog
+* Wed Apr 17 2013 Christopher Meng <rpm@cicku.me> - 2.33-1
+- Update to new release.
+
 * Sun Apr 07 2013 Christopher Meng <rpm@cicku.me> - 2.32-1
 - Initial package.
