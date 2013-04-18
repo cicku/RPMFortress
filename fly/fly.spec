@@ -10,7 +10,7 @@ BuildRequires:      gd-devel
 BuildRequires:      libjpeg-devel
 BuildRequires:      libpng-devel
 
-Source:             http://martin.gleeson.net/%{name}/dist/%{name}-%{version}.tar.gz
+Source0:            http://martin.gleeson.net/%{name}/dist/%{name}-%{version}.tar.gz
 
 %description
 Fly is a C program that creates PNG, JPEG or GIF images on the fly from CGI and other programs. Using Thomas Boutell's gd graphics library for fast image creation, it provides a command-file interface for creating and modifying images.
@@ -19,7 +19,7 @@ Fly is a C program that creates PNG, JPEG or GIF images on the fly from CGI and 
 %setup -q
 
 %build
-make CFLAGS="$RPM_OPT_FLAGS" CC="%__cc"
+make %{?_smp_mflags} #CFLAGS="#RPM_OPT_FLAGS" CC="#__cc"
 
 %install
 install -p -D -m 755 %{name} %{buildroot}%{_bindir}/%{name}

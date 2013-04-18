@@ -15,4 +15,8 @@ Let's see something real...
     reposurgeon                        # SCM Repository Manipulation Tool
     w3perl                             # Web analytic tool for Web / FTP / Squid / CUPS and Mail servers
     youtube-dl(co)                     # Small command-line program to download videos from YouTube
+    hadoop                             # A framework that allows for the distributed processing of large data sets across clusters of computers using simple programming models
+	ora2pg                             # Oracle to PostgreSQL database schema converter
+	RemoteBox                          # Open Source VirtualBox Client with Remote Management
+	perl(DBD::Oracle)                  # Oracle database driver for the DBI module
     ...                                # ...To be continued...
