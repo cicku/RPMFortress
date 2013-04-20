@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=RemoteBox
+Version=1.0
+Comment=VirtualBox Remote Client
+Exec=remotebox
+Terminal=false
+Icon=remotebox.png
+Type=Application
