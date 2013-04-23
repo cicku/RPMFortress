@@ -6,3 +6,4 @@ Exec=remotebox
 Terminal=false
 Icon=remotebox.png
 Type=Application
+Categories=Emulator;System;Application;
