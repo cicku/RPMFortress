@@ -54,9 +54,7 @@ msgfmt zh_TW.po -o zh_TW.mo
 %install
 install -p -D -m 755 dmusic %{buildroot}%{_bindir}/dmusic
 mkdir -p %{buildroot}%{_datadir}/%{name}
-cp -R app_theme %{buildroot}%{_datadir}/%{name}
-cp -R skin %{buildroot}%{_datadir}/%{name}
-cp -R src %{buildroot}%{_datadir}/%{name}
+install -d {app_theme,skin,src} %{buildroot}%{_datadir}/%{name}
 install -p -D -m 644 locale/zh_CN.mo %{buildroot}%{_datadir}/locale/zh_CN/LC_MESSAGES/%{name}.mo
 install -p -D -m 644 locale/zh_HK.mo %{buildroot}%{_datadir}/locale/zh_HK/LC_MESSAGES/%{name}.mo
 install -p -D -m 644 locale/zh_TW.mo %{buildroot}%{_datadir}/locale/zh_TW/LC_MESSAGES/%{name}.mo
@@ -79,5 +77,5 @@ install -p -D -m 644 %{S:2} %{buildroot}%{_datadir}/pixmaps/%{name}.png
 %{_bindir}/dmusic
 
 %changelog
-* Mon Apr 22 2013 Christopher Meng <cickumqt@gmail.com>  - 1.0.1-git20130423144914.1
+* Mon Apr 22 2013 Christopher Meng <rpm@cicku.me>  - 1.0.1-git20130423144914.1
 - Initial Package for Fedora.
