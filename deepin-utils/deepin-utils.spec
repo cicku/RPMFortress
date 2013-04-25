@@ -42,5 +42,5 @@ python setup.py install --prefix=%{_prefix} --root=%{buildroot}
 %{python_sitearch}/*
 
 %changelog
-* Mon Apr 22 2013 Christopher Meng <rpm@cicku.me>  - 0.0.1-git20130423150025.1
+* Mon Apr 22 2013 Christopher Meng <rpm@cicku.me> - 0.0.1-git20130423150025.1
 - Initial Package for Fedora.

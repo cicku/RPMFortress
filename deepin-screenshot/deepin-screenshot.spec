@@ -18,6 +18,8 @@ Requires:          python-xlib
 Requires:          pyxdg
 Requires:          pywebkitgtk
 Requires:          zbar
+
+BuildRequires:     desktop-file-utils
 BuildArch:         noarch
 
 %description
@@ -61,5 +63,5 @@ install -p -D -m 644 theme/logo/%{name}.png %{buildroot}%{_datadir}/pixmaps/%{na
 %{_datadir}/%{name}/*
 
 %changelog
-* Mon Apr 22 2013 Christopher Meng <rpm@cicku.mem>  - 2.0-1
+* Mon Apr 22 2013 Christopher Meng <rpm@cicku.me>  - 2.0-1
 - Initial Package for Fedora.

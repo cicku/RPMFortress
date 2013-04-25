@@ -58,5 +58,5 @@ cd %{_builddir}/%{buildsubdir}
 %{python_sitearch}/dtk*
 
 %changelog
-* Mon Apr 22 2013 Christopher Meng <rpm@cicku.me>  - 1.0.3-git20130423145901.1
+* Mon Apr 22 2013 Christopher Meng <rpm@cicku.me> - 1.0.3-git20130423145901.1
 - Initial Package for Fedora.

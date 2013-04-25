@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=erebus
+Comment=2D real-time Role-Playing Game
+Version=1.0
+Terminal=false
+Exec=erebus
+Icon=erebus64.png
+Type=Application
+Categories=Game;
