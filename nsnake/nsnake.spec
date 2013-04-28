@@ -21,7 +21,6 @@ make %{?_smp_mflags}
 
 %install
 make install DESTDIR=%{buildroot}
-install -p -D -m 644 doc/%{name}.6* %{buildroot}%{_mandir}/man6
 
 %files
 %doc BUGS ChangeLog COPYING README TODO

@@ -25,8 +25,7 @@ Requires:          numpy
 Requires:          webkitgtk
 
 %description
-Basic modules needed by most Linux Deepin applications such as
-deepin-music-player and so on.
+Basic modules needed by most Linux Deepin applications(deepin-prefix).
 
 %prep
 %setup -q

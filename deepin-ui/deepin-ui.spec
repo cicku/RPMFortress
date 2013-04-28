@@ -1,10 +1,10 @@
-%global datetime   20130423145901
+%global datetime   20130427173233
 
 Name:              deepin-ui
 Summary:           Linux Deepin Graphics Library
 License:           GPLv3
 Version:           1.0.3
-Release:           git%{datetime}%{?dist}
+Release:           git%{datetime}%{?dist}.1
 
 URL:               http://www.linuxdeepin.com
 
@@ -43,7 +43,7 @@ mv %{buildroot}/%{_datadir}/pyshared/dtk/locale %{buildroot}/%{_datadir}/locale
 
 #Remove .po and .pot files
 rm -rf %{buildroot}/%{_datadir}/locale/*.po*
-cd %{buildroot}/%{_prefix}/lib/python2.7/site-packages/dtk
+cd %{buildroot}%{python_sitearch}/dtk
 ln -s ../../../../share/pyshared/dtk/theme theme 
 
 # fix permission for all theme.txt files
@@ -58,5 +58,8 @@ cd %{_builddir}/%{buildsubdir}
 %{python_sitearch}/dtk*
 
 %changelog
+* Sun Apr 28 2013 Christopher Meng <rpm@cicku.me> - 1.0.3-git20130427173233.1
+- Update to lastest version.
+
 * Mon Apr 22 2013 Christopher Meng <rpm@cicku.me> - 1.0.3-git20130423145901.1
 - Initial Package for Fedora.

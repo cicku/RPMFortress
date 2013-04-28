@@ -35,5 +35,5 @@ install -p -D -m 644 doc/man/%{pkgname}.6 %{buildroot}%{_mandir}/man6
 %{_mandir}/man6/%{pkgname}.6*
 
 %changelog
-* Sat Apr 20 2013 Christopher Meng <rpm@cicku.me>  - 1.6-1
+* Sat Apr 20 2013 Christopher Meng <rpm@cicku.me> - 1.6-1
 - Initial Package.

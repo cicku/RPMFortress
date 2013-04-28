@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Tea
+GenericName=Text Editor
+Exec=tea %f
+Icon=tea
+Categories==Application;Utility;TextEditor;QT4;
+Encoding=UTF-8
+Terminal=false
+Type=Application
+MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
