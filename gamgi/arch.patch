@@ -1,0 +1,98 @@
+--- gamgi0.16.1/src/make_local.orig	2012-04-16 00:05:54.000000000 +0200
++++ gamgi0.16.1/src/make_local	2012-11-05 10:28:50.345250286 +0100
+@@ -18,55 +18,55 @@
+ #                 Debian, Fedora, Ubuntu, OpenSuse, Mandriva
+ #===============================================================================
+ 
++#PATH_EXPAT_H = -I/usr/include
++#PATH_FREETYPE_H = -I/usr/include/freetype2
++#PATH_X_H = -I/usr/include/X11
++#PATH_GLIB_H = -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include
++#PATH_CAIRO_H = -I/usr/include/cairo
++#PATH_PANGO_H = -I/usr/include/pango-1.0
++#PATH_ATK_H = -I/usr/include/atk-1.0
++#PATH_GTK_H =  -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include \
++#	-I/usr/include/gdk-pixbuf-2.0/
++#PATH_MESA_H = -I/usr/include
++#PATH_GTKGL_H = -I/usr/include/gtkglext-1.0 -I/usr/lib/gtkglext-1.0/include
++#
++#PATH_EXPAT_L = -L/usr/lib
++#PATH_FREETYPE_L = -L/usr/lib
++#PATH_X_L = -L/usr/lib
++#PATH_GLIB_L = -L/usr/lib
++#PATH_CAIRO_L = -L/usr/lib
++#PATH_PANGO_L = -L/usr/lib
++#PATH_ATK_L = -L/usr/lib
++#PATH_GTK_L =  -L/usr/lib
++#PATH_MESA_L = -L/usr/lib
++#PATH_GTKGL_L =-L/usr/lib
++
++#============================== Linux amd64 ====================================
++#                 Debian, Fedora, Ubuntu, OpenSuse, Mandriva
++#===============================================================================
++
+ PATH_EXPAT_H = -I/usr/include
+ PATH_FREETYPE_H = -I/usr/include/freetype2
+ PATH_X_H = -I/usr/include/X11
+-PATH_GLIB_H = -I/usr/include/glib-2.0 -I/usr/lib/glib-2.0/include
++PATH_GLIB_H = -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include
+ PATH_CAIRO_H = -I/usr/include/cairo
+ PATH_PANGO_H = -I/usr/include/pango-1.0
+ PATH_ATK_H = -I/usr/include/atk-1.0
+-PATH_GTK_H =  -I/usr/include/gtk-2.0 -I/usr/lib/gtk-2.0/include \
++PATH_GTK_H =  -I/usr/include/gtk-2.0 -I/usr/lib64/gtk-2.0/include \
+ 	-I/usr/include/gdk-pixbuf-2.0/
+ PATH_MESA_H = -I/usr/include
+-PATH_GTKGL_H = -I/usr/include/gtkglext-1.0 -I/usr/lib/gtkglext-1.0/include
++PATH_GTKGL_H = -I/usr/include/gtkglext-1.0 -I/usr/lib64/gtkglext-1.0/include
+ 
+-PATH_EXPAT_L = -L/usr/lib
+-PATH_FREETYPE_L = -L/usr/lib
+-PATH_X_L = -L/usr/lib
+-PATH_GLIB_L = -L/usr/lib
+-PATH_CAIRO_L = -L/usr/lib
+-PATH_PANGO_L = -L/usr/lib
+-PATH_ATK_L = -L/usr/lib
+-PATH_GTK_L =  -L/usr/lib
+-PATH_MESA_L = -L/usr/lib
+-PATH_GTKGL_L =-L/usr/lib
+-
+-#============================== Linux amd64 ====================================
+-#                 Debian, Fedora, Ubuntu, OpenSuse, Mandriva
+-#===============================================================================
+-
+-# PATH_EXPAT_H = -I/usr/include
+-# PATH_FREETYPE_H = -I/usr/include/freetype2
+-# PATH_X_H = -I/usr/include/X11
+-# PATH_GLIB_H = -I/usr/include/glib-2.0 -I/usr/lib64/glib-2.0/include
+-# PATH_CAIRO_H = -I/usr/include/cairo
+-# PATH_PANGO_H = -I/usr/include/pango-1.0
+-# PATH_ATK_H = -I/usr/include/atk-1.0
+-# PATH_GTK_H =  -I/usr/include/gtk-2.0 -I/usr/lib64/gtk-2.0/include \
+-#	-I/usr/include/gdk-pixbuf-2.0/
+-# PATH_MESA_H = -I/usr/include
+-# PATH_GTKGL_H = -I/usr/include/gtkglext-1.0 -I/usr/lib64/gtkglext-1.0/include
+-# 
+-# PATH_EXPAT_L = -L/usr/lib64
+-# PATH_FREETYPE_L = -L/usr/lib64
+-# PATH_X_L = -L/usr/lib64
+-# PATH_GLIB_L = -L/usr/lib64
+-# PATH_CAIRO_L = -L/usr/lib64
+-# PATH_PANGO_L = -L/usr/lib64
+-# PATH_ATK_L = -L/usr/lib64
+-# PATH_GTK_L =  -L/usr/lib64
+-# PATH_MESA_L = -L/usr/lib64
+-# PATH_GTKGL_L =-L/usr/lib64
++PATH_EXPAT_L = -L/usr/lib64
++PATH_FREETYPE_L = -L/usr/lib64
++PATH_X_L = -L/usr/lib64
++PATH_GLIB_L = -L/usr/lib64
++PATH_CAIRO_L = -L/usr/lib64
++PATH_PANGO_L = -L/usr/lib64
++PATH_ATK_L = -L/usr/lib64
++PATH_GTK_L =  -L/usr/lib64
++PATH_MESA_L = -L/usr/lib64
++PATH_GTKGL_L =-L/usr/lib64
+ 
+ #================================= OpenBSD =====================================
+ #

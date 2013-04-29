@@ -3,7 +3,7 @@ Name=Tea
 GenericName=Text Editor
 Exec=tea %f
 Icon=tea
-Categories==Application;Utility;TextEditor;QT4;
+Categories=Application;Utility;TextEditor;
 Encoding=UTF-8
 Terminal=false
 Type=Application

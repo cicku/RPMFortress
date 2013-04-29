@@ -9,6 +9,7 @@ Source0:           http://semiletov.org//%{name}/dloads/%{name}-%{version}.tar.b
 Source1:           %{name}.desktop
 
 BuildRequires:     aspell-devel
+BuildRequires:     desktop-file-utils
 BuildRequires:     gcc-c++
 BuildRequires:     hunspell-devel
 BuildRequires:     libpng-devel
@@ -34,7 +35,11 @@ make %{?_smp_mflags}
 make install INSTALL_ROOT=%{buildroot}
 install -p -D -m 755 bin/%{name} %{buildroot}%{_bindir}/%{name}
 install -p -D -m 644 icons/%{name}_icon_v2.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
-install -p -D -m 644 %{S:1} %{buildroot}%{_datadir}/applications/%{name}.desktop
+
+#Install .desktop file with no vendor support.
+desktop-file-install \
+    --dir=%{buildroot}%{_datadir}/applications \
+    %{S:1}
 
 %files
 %doc AUTHORS COPYING ChangeLog NEWS NEWS-RU README TODO manuals/ images/

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=GAMGI
+Comment=Build, View and Analyse Atomic Structures
+Encoding=UTF-8
+Exec=gamgi
+Icon=gamgi
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Education
