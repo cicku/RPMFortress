@@ -21,7 +21,7 @@ partition or if a device such as a digital camera memory card is bogus.
 %setup -q
 
 %build
-%configure --prefix=%{_prefix} --mandir=%{_datadir}/man
+%configure
 make %{?_smp_mflags}
 
 %install
