@@ -1,16 +1,15 @@
 Name:              tea
 Version:           35.0.0
-Release:           1%{?dist}
+Release:           2%{?dist}
 Summary:           A text editor with the hundreds of features
 URL:               http://semiletov.org
 License:           GPLv3 and Public Domain
 
-Source0:           http://semiletov.org//%{name}/dloads/%{name}-%{version}.tar.bz2
+Source0:           http://semiletov.org/%{name}/dloads/%{name}-%{version}.tar.bz2
 Source1:           %{name}.desktop
 
 BuildRequires:     aspell-devel
 BuildRequires:     desktop-file-utils
-BuildRequires:     gcc-c++
 BuildRequires:     hunspell-devel
 BuildRequires:     libpng-devel
 BuildRequires:     qt-devel
@@ -42,11 +41,14 @@ desktop-file-install \
     %{S:1}
 
 %files
-%doc AUTHORS COPYING ChangeLog NEWS NEWS-RU README TODO manuals/ images/
+%doc AUTHORS COPYING ChangeLog NEWS NEWS-RU README TODO
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
 
 %changelog
+* Tue Apr 30 2013 Christopher Meng <rpm@cicku.me> - 35.0.0-2
+- Errors fixed.
+
 * Tue Mar 26 2013 Christopher Meng <rpm@cicku.me> - 35.0.0-1
 - Initial Package.
