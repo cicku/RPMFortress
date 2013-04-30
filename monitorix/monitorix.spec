@@ -1,6 +1,6 @@
 Name:              monitorix
 Version:           3.1.0
-Release:           3%{?dist}
+Release:           4%{?dist}
 Summary:           A free, open source, lightweight system monitoring tool
 
 License:           GPLv2+
@@ -34,8 +34,8 @@ simplicity and small size may also be used on embedded devices as well.
 %setup -q
 
 #Patch the shebangs
-sed -i 's|/usr/bin/env perl|/usr/bin/perl|g' monitorix
-sed -i 's|/usr/bin/env perl|/usr/bin/perl|g' monitorix.cgi
+sed -i 's|/usr/bin/env perl|/usr/bin/perl|g' %{name}
+sed -i 's|/usr/bin/env perl|/usr/bin/perl|g' %{name}.cgi
 
 #Patch mail.pm for temporary use
 sed -i '1 d' lib/mail.pm
@@ -47,14 +47,14 @@ install -p -D -m 644 %{SOURCE2} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
 install -p -D -m 644 docs/%{name}.sysconfig %{buildroot}%{_sysconfdir}/sysconfig/%{name}
 install -p -D -m 644 %{name}.conf %{buildroot}%{_sysconfdir}/%{name}.conf
 install -p -D -m 755 %{name} %{buildroot}%{_bindir}/%{name}
-mkdir -p %{buildroot}%{_libdir}/monitorix
-install -p -D -m 644 lib/*.pm %{buildroot}%{_libdir}/%{name}
-mkdir -p %{buildroot}%{_datadir}/monitorix
+mkdir -p %{buildroot}/usr/lib/%{name}
+install -p -D -m 644 lib/*.pm %{buildroot}/usr/lib/%{name}
+mkdir -p %{buildroot}%{_datadir}/%{name}
 install -p -D -m 644 logo_top.png %{buildroot}%{_datadir}/%{name}
 install -p -D -m 644 logo_bot.png %{buildroot}%{_datadir}/%{name}
 install -p -D -m 644 %{name}ico.png %{buildroot}%{_datadir}/%{name}
 mkdir -p %{buildroot}%{_datadir}/%{name}/imgs
-mkdir -p %{buildroot}%{_datadir}/monitorix/cgi
+mkdir -p %{buildroot}%{_datadir}/%{name}/cgi
 install -p -D -m 755 %{name}.cgi %{buildroot}%{_datadir}/%{name}/cgi
 mkdir -p %{buildroot}%{_localstatedir}/lib/%{name}/reports
 install -p -D -m 644 reports/*.html %{buildroot}%{_localstatedir}/lib/%{name}/reports
@@ -84,7 +84,7 @@ install -p -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 %{_mandir}/man8/%{name}.8*
 %{_unitdir}/%{name}.service
 %{_bindir}/%{name}
-%{_libdir}/%{name}/*.pm
+/usr/lib/%{name}/*.pm
 %{_datadir}/%{name}/logo_top.png
 %{_datadir}/%{name}/logo_bot.png
 %{_datadir}/%{name}/%{name}ico.png
@@ -93,6 +93,9 @@ install -p -D -m 644 %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 %attr(755,root,root) %{_localstatedir}/lib/%{name}/usage
 
 %changelog
+* Tue Apr 30 2013 Christopher Meng <rpm@cicku.me> - 3.1.0-4
+- libdir fixed.
+
 * Sat Apr 06 2013 Christopher Meng <rpm@cicku.me> - 3.1.0-3
 - Errors fixed.
 
