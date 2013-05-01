@@ -3,7 +3,7 @@
 Name:              lookat
 Version:           1.4.2
 Release:           1%{?dist}
-Summary:           User-Friendly Text File Viewer
+Summary:           A user-friendly text file viewer
 
 URL:               http://www.wagemakers.be/english/programs/lookat
 License:           GPLv2+
@@ -12,10 +12,7 @@ Source0:           http://www.wagemakers.be/downloads/%{name}/%{name}_%{nlname}-
 
 BuildRequires:     autoconf
 BuildRequires:     automake
-BuildRequires:     glibc-devel
-BuildRequires:     libtool
 BuildRequires:     ncurses-devel
-BuildRequires:     pkgconfig
 
 %description
 lookat is a program to view text files and manual pages. It is designed to be
@@ -25,7 +22,8 @@ more user-friendly than more conventional text viewers such as less.
 %setup -q -n %{name}_%{nlname}-%{version}
 
 %build
-%configure --prefix=%{_prefix} --sysconfdir=%{_sysconfdir} --mandir=%{_mandir}
+autoreconf -fiv
+%configure
 make %{?_smp_mflags}
 
 %install
