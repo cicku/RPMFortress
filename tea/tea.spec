@@ -12,7 +12,10 @@ BuildRequires:     aspell-devel
 BuildRequires:     desktop-file-utils
 BuildRequires:     hunspell-devel
 BuildRequires:     libpng-devel
+BuildRequires:     minizip-devel
 BuildRequires:     qt-devel
+BuildRequires:     quazip-devel
+BuildRequires:     zlib-devel
 
 %description
 TEA is a powerful and easy-to-use Qt4-based editor with many useful features 
@@ -26,13 +29,19 @@ and more.
 %prep
 %setup -q
 
+#rm -rf ioapi.* \
+#zip.* \
+#unzip.* \
+#qua*.* \
+#zconf.h \
+#zlib.h
+
 %build
-qmake-qt4 PREFIX=%{_bindir}
+qmake-qt4 QMAKE_CFLAGS+="%optflags" QMAKE_CXXFLAGS+="%optflags" QMAKE_STRIP="/bin/true" PREFIX=%{_bindir}
 make %{?_smp_mflags}
 
 %install
 make install INSTALL_ROOT=%{buildroot}
-install -p -D -m 755 bin/%{name} %{buildroot}%{_bindir}/%{name}
 install -p -D -m 644 icons/%{name}_icon_v2.png %{buildroot}%{_datadir}/pixmaps/%{name}.png
 
 #Install .desktop file with no vendor support.
