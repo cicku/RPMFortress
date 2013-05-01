@@ -1,7 +1,7 @@
 Name:              recoverjpeg
 Summary:           Recover jpeg pictures and mov movies from damaged devices
 License:           GPLv2
-Version:           2.2.2
+Version:           2.2.3
 Release:           1%{?dist}
 URL:               http://www.rfc1149.net/devel/recoverjpeg
 
@@ -35,5 +35,8 @@ make install DESTDIR=%{buildroot}
 %{_mandir}/man1/*.1*
 
 %changelog
+* Wed May 01 2013 Christopher Meng <rpm@cicku.me> - 2.2.3-1
+- New upstream release with minor fixes.
+
 * Sun Apr 14 2013 Christopher Meng <rpm@cicku.me> - 2.2.2-1
 - Initial Package.
