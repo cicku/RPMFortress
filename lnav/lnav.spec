@@ -1,23 +1,21 @@
 Name:              lnav
 Version:           0.5.0
 Release:           1%{?dist}
-Summary:           Logfile Navigator
+Summary:           A curses-based tool for viewing and analyzing log files
 URL:               http://lnav.org
-License:           BSD (revised)
+License:           BSD(revised)
 
 Source:            https://dl.dropboxusercontent.com/u/70174949/%{name}-%{version}.tar.bz2
 
-BuildRequires:     zlib-devel
-BuildRequires:     bzip2-devel
-BuildRequires:     ncurses-devel
-BuildRequires:     readline-devel
-BuildRequires:     pcre-devel
-BuildRequires:     sqlite-devel
-BuildRequires:     glibc-devel
-BuildRequires:     libstdc++-devel
 BuildRequires:     autoconf
 BuildRequires:     automake
-BuildRequires:     libtool
+BuildRequires:     bzip2-devel
+BuildRequires:     ncurses-devel
+BuildRequires:     openssl-devel
+BuildRequires:     pcre-devel
+BuildRequires:     readline-devel
+BuildRequires:     sqlite-devel
+BuildRequires:     zlib-devel
 
 %description
 The log file navigator, lnav, is an enhanced log file viewer that
@@ -33,11 +31,15 @@ efficiently zero in on problems.
 %setup -q
 
 %build
+autoreconf -fiv
 %configure --disable-static
 make %{?_smp_flags}
 
 %install
 make install DESTDIR=%{buildroot}
+
+%check
+make test
 
 %files
 %doc LICENSE NEWS README
