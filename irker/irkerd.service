@@ -1,0 +1,14 @@
+[Unit]
+Description=irker daemon
+Documentation=man:irkerd(8)
+Requires=network.target
+
+[Service]
+Type=forking
+PIDFile=/run/irkerd.pid
+ExecStart=/usr/bin/irkerd
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+
+[Install]
+WantedBy=multi-user.target
