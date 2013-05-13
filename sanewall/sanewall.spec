@@ -1,5 +1,5 @@
 Name:              sanewall
-Version:           1.1.1
+Version:           1.1.0
 Release:           1%{?dist}
 Summary:           A powerful firewall builder
 
@@ -10,6 +10,7 @@ Source1:           %{name}.service
 
 BuildRequires:     autoconf
 BuildRequires:     automake
+#BuildRequires:     dblatex
 BuildRequires:     libxslt
 Requires:	   iproute
 Requires:	   iptables
@@ -69,8 +70,5 @@ install -p -D -m 644 %{S:1} %{buildroot}%{_unitdir}/%{name}.service
 %{_localstatedir}/spool/%{name}
 
 %changelog
-* Tue May 07 2013 Christopher Meng <rpm@cicku.me> - 1.1.1-1
-- New Upstream Release.
-
 * Thu May 02 2013 Christopher Meng <rpm@cicku.me> - 1.1.0-1
 - Initial Package.
