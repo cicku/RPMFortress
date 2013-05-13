@@ -1,0 +1,14 @@
+[Unit]
+Description=Sanewall
+Documentation=man:sanewall(1)
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/sanewall start
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/usr/sbin/sanewall stop
+RemainAfterExit=yes
+PIDFile=/run/sanewall.pid
+
+[Install]
+WantedBy=multi-user.target
