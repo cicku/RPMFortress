@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=OCRFeeder
+Type=Application
+Comment=The complete OCR suite
+Exec=ocrfeeder
+Icon=ocrfeeder.svg
+MimeType=image/bmp;image/gif;image/jpeg;image/jpg;image/pjpeg;image/png;image/tiff;
+Categories=Office
+StartupNotify=true
