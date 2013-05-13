@@ -1,11 +1,10 @@
 Name:              lnav
-Version:           0.5.0
+Version:           0.5.1
 Release:           2%{?dist}
 Summary:           A curses-based tool for viewing and analyzing log files
-URL:               http://lnav.org
 License:           BSD
-
-Source:            https://dl.dropboxusercontent.com/u/70174949/%{name}-%{version}.tar.bz2
+URL:               http://lnav.org
+Source0:           http://lnav.org/downloads/%{name}-%{version}.tar.bz2
 
 BuildRequires:     autoconf
 BuildRequires:     automake
@@ -30,9 +29,6 @@ efficiently zero in on problems.
 %prep
 %setup -q
 
-#Patch automake foreign option
-sed -i 's|AM_INIT_AUTOMAKE|AM_INIT_AUTOMAKE([foreign])|g' configure.ac
-
 %build
 autoreconf -fiv
 %configure --disable-static
@@ -42,13 +38,19 @@ make %{?_smp_flags}
 make install DESTDIR=%{buildroot}
 
 %check
-make test
+make check
 
 %files
 %doc LICENSE NEWS README
 %{_bindir}/%{name}
 
 %changelog
+* Thu May 09 2013 Christopher Meng <rpm@cicku.me> - 0.5.1-2
+- Cleanup old stuffs.
+
+* Fri May 03 2013 Christopher Meng <rpm@cicku.me> - 0.5.1-1
+- New upstream release.
+
 * Fri May 03 2013 Christopher Meng <rpm@cicku.me> - 0.5.0-2
 - Patch with automake foreign option in order to support aarch64
 
