@@ -20,16 +20,24 @@ Let's see something real...
     RemoteBox                          # Open Source VirtualBox Client with Remote Management
     perl(DBD::Oracle)                  # Oracle database driver for the DBI module
     nsnake                             # Classic snake game on console
-	nblocks
-	minised
-	deepin-ui                          # Linux Deepin Graphics Library
-	deepin-utils                       # Basic modules needed by most Linux Deepin applications
-	lnav                               # Logfile Navigator
-	tea                                # A text editor with the hundreds of features
-	storeBackup                        # A very space efficient disk-to-disk backup suite 
-	w3perl                             # Web analytic tool for Web / FTP / Squid / CUPS / DHCP and Mail servers
-	python-doit                        # Python automation tool
-	fly                                # A Script to Create images
-	
-	
+    nblocks
+    minised                            # A smaller, cheaper, faster SED implementation
+    deepin-ui                          # Linux Deepin Graphics Library
+    deepin-utils                       # Basic modules needed by most Linux Deepin applications
+    lnav                               # Logfile Navigator
+    tea                                # A text editor with the hundreds of features
+    storeBackup                        # A very space efficient disk-to-disk backup suite 
+    w3perl                             # Web analytic tool for Web / FTP / Squid / CUPS / DHCP and Mail servers
+    fly                                # A Script to Create images
+    sanewall                           # A powerful firewall builder
+    cego                               # A relational and transactional database
+    dhcpy6d                            # DHCPv6 server daemon
+    gamgi                              # Build, View and Analyse Atomic Structures
+    irker                              # IRC Message Relay
+    liblfc                             # Lemke Foundation Classes
+    lookat                             # A user-friendly text file viewer
+
+
+
+
     ...                                # ...To be continued...
