@@ -1,5 +1,5 @@
 Name:              cego
-Version:           2.17.12
+Version:           2.18.1
 Release:           1%{?dist}
 Summary:           A relational and transactional database
 License:           GPLv2
@@ -37,7 +37,7 @@ make %{?_smp_mflags}
 %install
 pushd src
 make install DESTDIR=%{buildroot}
-find %{buildroot} -name '*.a' -exec rm -f {} ';'
+find %{buildroot} -name '*.la' -exec rm -f {} ';'
 popd
 
 for f in `ls %{buildroot}/tools`
@@ -56,8 +56,15 @@ done
 %files devel
 %doc COPYING
 %{_includedir}/%{name}/*
+/usr/lib/*.so
 
 %changelog
+* Wed May 15 2013 Christopher Meng <rpm@cicku.me> - 2.18.1-1
+- New release.
+
+* Wed May 08 2013 Christopher Meng <rpm@cicku.me> - 2.18.0-1
+- New release.
+
 * Wed May 08 2013 Christopher Meng <rpm@cicku.me> - 2.17.12-1
 - New release.
 
