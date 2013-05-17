@@ -1,5 +1,5 @@
 Name:           youtube-dl
-Version:        2013.05.07
+Version:        2013.05.14
 Release:        1%{?dist}
 Summary:        Small command-line program to download videos from YouTube
 Group:          Applications/Multimedia
@@ -45,6 +45,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_sysconfdir}/bash_completion.d/%{name}
 
 %changelog
+* Tue May 14 2013 Christopher Meng <rpm@cicku.me> - 2013.05.14-1
+- Update to new release
+
 * Wed May 08 2013 Christopher Meng <rpm@cicku.me> - 2013.05.07-1
 - Update to new release
 
