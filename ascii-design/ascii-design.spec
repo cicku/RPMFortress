@@ -1,6 +1,6 @@
 Name:              ascii-design
 Version:           1.0.1
-Release:           1%{?dist}
+Release:           2%{?dist}
 Summary:           A tool to create ascii arts
 License:           GPLv2
 
@@ -10,8 +10,7 @@ Source0:           http://downloads.sourceforge.net/project/%{name}/%{name}/Asci
 BuildRequires:     qt-devel
 BuildRequires:     desktop-file-utils
 BuildRequires:     dos2unix
-Requires:	   figlet
-Requires:	   qt
+Requires:          figlet
 
 %description
 Ascii Design is a free program based on figlet engine that enables you to 
@@ -46,5 +45,8 @@ install -p -D -m 644 pics/%{name}.png %{buildroot}%{_datadir}/pixmaps/%{name}.pn
 %{_datadir}/pixmaps/%{name}.png
 
 %changelog
+* Sat May 18 2013 Christopher Meng <rpm@cicku.me> - 1.0.1-2
+- Small fix.
+
 * Thu May 02 2013 Christopher Meng <rpm@cicku.me> - 1.0.1-1
 - Initial Package.
