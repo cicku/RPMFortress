@@ -1,11 +1,9 @@
 Name:              erebus
-Summary:           2D real-time Role-Playing Game
-License:           GPLv3+
 Version:           0.7
 Release:           1%{?dist}
-
+Summary:           2D real-time Role-Playing Game
+License:           GPLv3+
 URL:               http://erebusrpg.sourceforge.net
-
 Source0:           https://launchpad.net/%{name}/trunk/%{version}/+download/%{name}src.zip
 Source1:           %{name}.desktop
 
@@ -74,10 +72,13 @@ desktop-file-validate %{buildroot}%{_datadir}/applications/%{name}.desktop
 %files
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}64.png
-%{_datadir}/%{name}/*
+%{_datadir}/%{name}/
 %{_datadir}/doc/%{name}/*
 %{_bindir}/%{name}
 
 %changelog
+* Tue May 21 2013 Christopher Meng <rpm@cicku.me> - 0.7-2
+- Fixes.
+
 * Mon Apr 22 2013 Christopher Meng <rpm@cicku.me> - 0.7-1
 - Initial Package.
