@@ -1,14 +1,12 @@
 Name:               freecode-submit
 Version:            2.5
-Release:            1%{?dist}
+Release:            2%{?dist}
 Summary:            A tool help submit release information to freecode.com
 License:            BSD
 URL:                http://www.catb.org/~esr/freecode-submit/
-Source0:            http://www.catb.org/~esr/freecode-submit/%{name}-%{version}.tar.gz
+Source0:            http://www.catb.org/~esr/%{name}/%{name}-%{version}.tar.gz
 
-BuildRequires:      xmlto
-BuildRequires:      python
-Requires:           python
+BuildRequires:      python xmlto
 BuildArch:          noarch
 
 %description
@@ -24,7 +22,6 @@ name change.
 sed -i 's|#!/usr/bin/env python|#!/usr/bin/python|g' %{name}
 
 %build
-make
 make %{name}.html
 
 %install
@@ -37,5 +34,8 @@ install -p -D -m 644 %{name}.1 "%{buildroot}%{_mandir}/man1/%{name}.1"
 %{_mandir}/man1/%{name}.1*
 
 %changelog
+* Sat May 18 2013 Christopher Meng <rpm@cicku.me> - 2.5-2
+- Fix build section.
+
 * Wed May 15 2013 Christopher Meng <rpm@cicku.me> - 2.5-1
 - Initial package.
