@@ -1,0 +1,11 @@
+[Unit]
+Description=Per Host RatE Limiter daemon
+Documentation=man:phreld(1)
+
+[Service]
+EnvironmentFile=-/etc/sysconfig/phreld
+ExecStart=/usr/bin/phreld $EXTRAOPTIONS
+Type=forking
+
+[Install]
+WantedBy=multi-user.target
