@@ -1,0 +1,10 @@
+[Unit]
+Description=Darkhttpd webserver daemon
+
+[Service]
+EnvironmentFile=-/etc/sysconfig/darkhttpd
+ExecStart=/usr/bin/darkhttpd $DARKHTTPD_ROOT --daemon $DARKHTTPD_FLAGS
+Type=forking
+
+[Install]
+WantedBy=multi-user.target

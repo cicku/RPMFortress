@@ -1,0 +1,2 @@
+DARKHTTPD_ROOT="/var/www"
+DARKHTTPD_FLAGS="--uid nobody --gid nobody --chroot"
