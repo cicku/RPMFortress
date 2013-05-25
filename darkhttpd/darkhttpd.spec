@@ -1,11 +1,13 @@
 Name:              darkhttpd
 Version:           1.9
-Release:           1%{?dist}
+Release:           2%{?dist}
 Summary:           A secure, lightweight, fast, single-threaded HTTP/1.1 server
 License:           BSD
 
 URL:               http://unix4lyfe.org/darkhttpd/
 Source0:           http://unix4lyfe.org/%{name}/%{name}-%{version}.tar.bz2
+Source1:           %{name}.service
+Source2:           %{name}.sysconfig
 
 %description
 darkhttpd is a secure, lightweight, fast, single-threaded HTTP/1.1 server.
@@ -34,11 +36,18 @@ make CFLAGS="%{optflags}" %{?_smp_mflags}
 
 %install
 install -p -D -m 755 %{name} %{buildroot}%{_bindir}/%{name}
+install -p -D -m 644 %{S:1} %{buildroot}%{_unitdir}/%{name}.service
+install -p -D -m 644 %{S:2} %{buildroot}%{_sysconfdir}/sysconfig/%{name}
 
 %files
 %doc README
+%config(noreplace) %{_sysconfdir}/sysconfig/%{name}
 %{_bindir}/%{name}
+%{_unitdir}/%{name}.service
 
 %changelog
+* Wed May 22 2013 Christopher Meng <rpm@cicku.me> - 1.9-2
+- Add systemd support.
+
 * Wed May 01 2013 Christopher Meng <rpm@cicku.me> - 1.9-1
 - Initial Package.
