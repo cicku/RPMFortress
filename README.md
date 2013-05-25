@@ -34,10 +34,21 @@ Let's see something real...
     dhcpy6d                            # DHCPv6 server daemon
     gamgi                              # Build, View and Analyse Atomic Structures
     irker                              # IRC Message Relay
-    liblfc                             # Lemke Foundation Classes
+    lfcbase                            # Lemke Foundation Classes
+    lfcxml                             # Lemke Foundation Classes XML Extensions
     lookat                             # A user-friendly text file viewer
+    codecrypt                          # The post-quantum cryptography tool
+    phrel                              # Per Host RatE Limiter
+    nimrod                             # A statically typed, imperative programming language
+    prwd                               # A tool can print reduced working directory
+    darkhttpd                          # A secure, lightweight, fast, single-threaded HTTP/1.1 server
+    edelib                             # Small and portable C++ library for EDE
+    ede                                # EDE(Equinox Desktop Environment)
+
 
 
 
 
     ...                                # ...To be continued...
+
+For more information, please refer to https://admin.fedoraproject.org/pkgdb/users/packages/cicku and relevant cgit repos hosted at http://pkgs.fedoraproject.org.
