@@ -1,8 +1,8 @@
 Name:           tcpcopy
 Version:        0.7.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An online request replication tool
-License:        3 clause BSD
+License:        BSD
 URL:            http://code.google.com/p/tcpcopy
 Source0:        http://%{name}.googlecode.com/files/%{name}-%{version}.tar.gz
 BuildRequires:  libnetfilter_queue-devel
@@ -28,10 +28,13 @@ make %{?_smp_mflags}
 make install DESTDIR=%{buildroot}
 
 %files
-%doc AUTHORS ChangeLog COPYING NEWS README
+%doc AUTHORS COPYING README
 %{_bindir}/%{name}
 %{_bindir}/intercept
 
 %changelog
+* Fri May 21 2013 Christopher Meng <rpm@cicku.me> - 0.7.0-2
+- Fix the incorrect license.
+
 * Wed May 01 2013 Christopher Meng <rpm@cicku.me> - 0.7.0-1
 - Initial package.
