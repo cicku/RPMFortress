@@ -2,14 +2,14 @@
 
 Name:            python-tvrage
 Version:         0.4.1
-Release:         1%{?dist}
+Release:         2%{?dist}
 Summary:         Python client for the tvrage.com XML API
 License:         BSD
 Url:             https://pypi.python.org/pypi/python-tvrage
-Source0: 	 https://pypi.python.org/packages/source/p/%{name}/%{name}-%{version}.tar.gz
+Source0:         https://pypi.python.org/packages/source/p/%{name}/%{name}-%{version}.tar.gz
 
 BuildArch:       noarch
-BuildRequires:   python-devel python-setuptools
+BuildRequires:   python2-devel python-setuptools
 Requires:        python-BeautifulSoup
 
 %description
@@ -25,10 +25,17 @@ tvrage.com's XML based api feeds.
 %install
 %{__python} setup.py install -O1 --skip-build --root=%{buildroot}
 
+%check
+%{__python} quickinfo_tests.py && %{__python} api_tests.py
+
 %files
 %doc AUTHORS LICENSE NEWS README.rst
-%{python_sitelib}/*
+%{python_sitelib}/tvrage/
+%{python_sitelib}/*.egg-info
 
 %changelog
+* Fri May 31 2013 Christopher Meng <rpm@cicku.me> - 0.4.1-2
+- Fix rpmlint issues.
+
 * Fri Dec 28 2012 Christopher Meng <rpm@cicku.me> - 0.4.1-1
 - Initial Package.
