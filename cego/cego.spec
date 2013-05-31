@@ -1,7 +1,7 @@
 %global _hardened_build 1
 
 Name:              cego
-Version:           2.18.6
+Version:           2.18.7
 Release:           1%{?dist}
 Summary:           A relational and transactional database
 License:           GPLv3+
@@ -73,6 +73,9 @@ done
 %{_libdir}/*.so
 
 %changelog
+* Sun May 26 2013 Christopher Meng <rpm@cicku.me> - 2.18.7-1
+- New release.
+
 * Thu May 23 2013 Christopher Meng <rpm@cicku.me> - 2.18.6-1
 - New release.
 - Fix the checkDB issue.
