@@ -1,12 +1,12 @@
-Name:              nimrod
-Version:           0.9.2
-Release:           1%{?dist}
-Summary:           A statically typed, imperative programming language
-License:           MIT
-URL:               http://nimrod-code.org
-Source0:           http://nimrod-code.org/download/%{name}_%{version}.zip
+Name:            nimrod
+Version:         0.9.2
+Release:         1%{?dist}
+Summary:         A statically typed, imperative programming language
+License:         MIT
+URL:             http://nimrod-code.org
+Source0:         http://nimrod-code.org/download/%{name}_%{version}.zip
 
-BuildRequires:     readline-devel
+BuildRequires:   readline-devel
 
 %description
 Nimrod is a statically typed, imperative programming language that tries to 
@@ -19,50 +19,39 @@ on thread local heaps. Asynchronous message passing is used between threads,
 so no "stop the world" mechanism is necessary. An unsafe shared memory heap 
 is also provided for the increased efficiency that results from that model.
 
-%package           devel
-Summary:           Development files for %{name}
-Requires:	   %{name}%{?_isa} = %{version}-%{release}
+%package         doc
+Summary:         Documentation for the %{name}
+BuildArch:       noarch
 
-%description       devel
-The %{name}-devel package contains libraries and header files for
-developing applications that use %{name}.
+%description     doc
+This package contains document files for %{name}.
 
 %prep
 %setup -q -n %{name}
-chmod 755 build.sh
+chmod 755 *.sh
 
 %build
 ./build.sh
+pushd bin/
+./nimrod c -d:release ../koch
+popd
+./koch boot -d:release -d:useGnuReadline
 
 %install
-mkdir -p %{buildroot}%{_bindir}
-install -p -D -m 755 bin/nimrod %{buildroot}%{_bindir} bin/nimrod
-
-# install doc directory ...
-mkdir -p %{buildroot}%{_docdir}/%{name}-%{version}/html
-install  doc/* %{buildroot}%{_docdir}/%{name}-%{version}/html
-
-# install examples ...
-mkdir -p %{buildroot}%{_docdir}/%{name}-%{version}/examples
-install  examples/* %{buildroot}%{_docdir}/%{name}-%{version}/examples
-
-# install misc files ...
-install  gpl.html readme.txt contributors.txt %{buildroot}%{_docdir}/%{name}-%{version}/
-
-%post -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
-
-%check
+install -p -D -m 755 bin/%{name} %{buildroot}%{_bindir}/%{name}
+install -d %{buildroot}%{_sysconfdir}/
+install -d %{buildroot}/usr/lib/%{name}/
+mv config/* %{buildroot}%{_sysconfdir}/
+mv lib/* %{buildroot}/usr/lib/%{name}/
 
 %files
-#%doc COPYING README TODO
-#%{_bindir}/*
-#%{_libdir}/*.so.*
+%doc contributors.txt copying.txt
+%config(noreplace) %{_sysconfdir}/*
+/usr/lib/%{name}/
+%{_bindir}/%{name}
 
-%files devel
-#%{_includedir}/%{name}/
-#%{_libdir}/*.so
+%files doc
+%doc doc/ examples/
 
 %changelog
 * Fri May 24 2013 Christopher Meng <rpm@cicku.me> - 0.9.2-1
