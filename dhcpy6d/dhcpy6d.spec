@@ -1,5 +1,5 @@
 Name:              dhcpy6d
-Version:           0.1.3
+Version:           0.2
 Release:           1%{?dist}
 Summary:           DHCPv6 server daemon
 License:           GPLv2
@@ -34,7 +34,7 @@ CFLAGS="%{optflags}" %{__python} setup.py build
 %install
 %{__python} setup.py install --skip-build --prefix=%{_prefix} --root=%{buildroot}
 install -p -D -m 644 %{S:1} %{buildroot}%{_unitdir}/%{name}.service
-rm -rf %{buildroot}%{_sysconfdir}/init.d
+install -p -D -m 644 etc/logrotate.d/%{name} %{buildroot}%{_sysconfdir}/logrotate.d/%{name}
 
 %post
 %systemd_post %{S:1}
@@ -47,8 +47,9 @@ rm -rf %{buildroot}%{_sysconfdir}/init.d
 
 %files
 %doc %{_defaultdocdir}/*
-%{_sbindir}/%{name}
-%{python_sitelib}/*
+%{_bindir}/%{name}
+%{python_sitelib}/dhcpy6/
+%{python_sitelib}/*.egg-info
 %config(noreplace) %{_sysconfdir}/logrotate.d/%{name}
 %config(noreplace) %{_sysconfdir}/%{name}.conf
 %config(noreplace) %{_localstatedir}/lib/%{name}/volatile.sqlite
@@ -56,5 +57,8 @@ rm -rf %{buildroot}%{_sysconfdir}/init.d
 %{_unitdir}/%{name}.service
 
 %changelog
+* Tue Jun 04 2013 Christopher Meng <rpm@cicku.me> - 0.2-1
+- New upstream release.
+
 * Thu May 09 2013 Christopher Meng <rpm@cicku.me> - 0.1.3-1
 - Initial Package.
