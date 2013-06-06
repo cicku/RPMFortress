@@ -31,7 +31,6 @@ developing applications that use %{name} libraries.
 
 %package           doc
 Summary:           Documentation for the %{name}
-Requires:          %{name}%{?_isa} = %{version}-%{release}
 BuildArch:         noarch
 
 %description       doc
@@ -49,6 +48,7 @@ jam
 %install
 jam install
 find %{buildroot} -name '*.a' -exec rm -f {} ';'
+find %{buildroot} -name 'INSTALL' -exec rm -f {} ';'
 
 %post -p /sbin/ldconfig
 
