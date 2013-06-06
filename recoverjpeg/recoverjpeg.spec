@@ -1,14 +1,13 @@
-Name:              recoverjpeg
-Summary:           Recover jpeg pictures and mov movies from damaged devices
-License:           GPLv2
-Version:           2.2.3
-Release:           1%{?dist}
-URL:               http://www.rfc1149.net/devel/recoverjpeg
+Name:         recoverjpeg
+Summary:      Recover jpeg pictures and mov movies from damaged devices
+License:      GPLv2
+Version:      2.2.3
+Release:      1%{?dist}
+URL:          http://www.rfc1149.net/devel/recoverjpeg
+Source0:      http://www.rfc1149.net/download/%{name}/%{name}-%{version}.tar.gz
 
-Source0:           http://www.rfc1149.net/download/%{name}/%{name}-%{version}.tar.gz
-
-Requires:          ImageMagick
-Requires:          exif
+Requires:     ImageMagick
+Requires:     exif
 
 %description
 recoverjpeg tries to recover JFIF (JPEG) pictures 
