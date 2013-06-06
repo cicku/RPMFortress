@@ -2,15 +2,15 @@
 %global __provides_exclude perl\\(
 
 Name:              monitorix
-Version:           3.2.0
-Release:           2%{?dist}
+Version:           3.2.1
+Release:           1%{?dist}
 Summary:           A free, open source, lightweight system monitoring tool
 License:           GPLv2+
 URL:               http://www.monitorix.org
 Source0:           http://www.monitorix.org/%{name}-%{version}.tar.gz
 
 BuildArch:         noarch
-BuildREquires:     perl
+BuildRequires:     perl
 BuildRequires:     systemd
 Requires:          logrotate
 Requires:          perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
@@ -93,6 +93,9 @@ install -p -D -m 644 docs/%{name}.service %{buildroot}%{_unitdir}/%{name}.servic
 %attr(755,root,root) %{_localstatedir}/lib/%{name}/usage
 
 %changelog
+* Wed Jun 05 2013 Christopher Meng <rpm@cicku.me> - 3.2.1-1
+- New release.
+
 * Tue May 21 2013 Christopher Meng <rpm@cicku.me> - 3.2.0-2
 - Fixes.
 
