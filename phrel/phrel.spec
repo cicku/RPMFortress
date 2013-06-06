@@ -2,7 +2,7 @@
 %global _hardened_build 1
 
 Name:              phrel
-Version:           1.0.1
+Version:           1.0.2
 Release:           1%{?dist}
 Summary:           Per Host RatE Limiter
 License:           GPLv2
@@ -72,5 +72,8 @@ find %{buildroot} -name '*.a' -exec rm -f {} ';'
 %{_unitdir}/%{dname}.service
 
 %changelog
+* Thu Jun 06 2013 Christopher Meng <rpm@cicku.me> - 1.0.2-1
+- New release.
+
 * Wed May 08 2013 Christopher Meng <rpm@cicku.me> - 1.0.1-1
 - Initial Package.
