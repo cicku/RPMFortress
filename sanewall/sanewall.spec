@@ -11,6 +11,7 @@ Source1:           %{name}.service
 BuildRequires:     autoconf
 BuildRequires:     automake
 BuildRequires:     libxslt
+BuildRequires:     systemd
 Requires:	   iproute
 Requires:	   iptables
 Requires(post):    systemd
