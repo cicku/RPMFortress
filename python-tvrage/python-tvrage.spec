@@ -2,7 +2,7 @@
 
 Name:            python-tvrage
 Version:         0.4.1
-Release:         2%{?dist}
+Release:         3%{?dist}
 Summary:         Python client for the tvrage.com XML API
 License:         BSD
 Url:             https://pypi.python.org/pypi/python-tvrage
@@ -18,6 +18,7 @@ tvrage.com's XML based api feeds.
 
 %prep
 %setup -q -n ckreutzer-%{name}-%{rev}
+sed -i '1,2d' tvrage/exceptions.py
 
 %build
 %{__python} setup.py build
@@ -34,6 +35,9 @@ tvrage.com's XML based api feeds.
 %{python_sitelib}/*.egg-info
 
 %changelog
+* Sun Jun 02 2013 Christopher Meng <rpm@cicku.me> - 0.4.1-3
+- Fix the python env issue.
+
 * Fri May 31 2013 Christopher Meng <rpm@cicku.me> - 0.4.1-2
 - Fix rpmlint issues.
 
