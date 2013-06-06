@@ -1,10 +1,13 @@
+%global commit 9bff23720d09a910dacad101c18d0f4512ae375a
+%global shortcommit %(c=%{commit}; echo ${c:0:7})
+
 Name:           wemux
-Version:        3.1.0
+Version:        2.2.0
 Release:        1%{?dist}
 Summary:        A tool help improve multi-user terminal multiplexing
 License:        MIT
-URL:            http://github.com/zolrath/wemux
-Source0:        https://github.com/downloads/zolrath/%{name}/%{name}-%{version}.tar.gz
+URL:            https://github.com/zolrath/wemux
+Source0:        https://github.com/zolrath/wemux/archive/%{commit}/%{name}-%{version}-%{shortcommit}.tar.gz
 
 Requires:       tmux
 BuildArch:      noarch
@@ -27,25 +30,22 @@ It features multi-server support as well as user listing and notifications
 when users attach/detach.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{commit}
 sed -i 's|/usr/local||g' %{name}
-gzip man/%{name}.1
 
 %build
 
 %install
 install -p -D -m 755 %{name} %{buildroot}%{_bindir}/%{name}
 install -p -D -m 644 %{name}.conf.example %{buildroot}%{_sysconfdir}/%{name}.conf
-install -p -D -m 644 man/%{name}.1.gz %{buildroot}%{_mandir}/man1/%{name}.1.gz
 
 %check
 
 %files
 %doc MIT-LICENSE README.md
-%config(noreplace) %{_sysconfdir}/*
-%{_bindir}/*
-%{_mandir}/man1/%{name}.1*
+%config(noreplace) %{_sysconfdir}/%{name}.conf
+%{_bindir}/%{name}
 
 %changelog
-* Wed Mar 27 2013 Christopher Meng <rpm@cicku.me> - 3.1.0-1
+* Wed Mar 27 2013 Christopher Meng <rpm@cicku.me> - 2.2.0-1
 - Initial Package.
