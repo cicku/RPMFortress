@@ -1,13 +1,14 @@
 [Unit]
 Description=dhcpy6d DHCPv6 server daemon
-Requires=network.target
+After=network.target
 
 [Service]
 Type=forking
-PIDFile=/run/dhcpy6d.pid
-ExecStart=/usr/sbin/dhcpy6d
-ExecReload=/bin/kill -s HUP $MAINPID
-ExecStop=/bin/kill -s QUIT $MAINPID
+
+User=dhcpy6d
+Group=dhcpy6d
+
+ExecStart=/usr/sbin/dhcpy6d /etc/dhcpy6d.conf
 
 [Install]
 WantedBy=multi-user.target
