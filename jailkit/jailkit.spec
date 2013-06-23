@@ -1,19 +1,18 @@
+%global _hardened_build 1
+
 Name:          jailkit
 Version:       2.16
-Release:       1%{?dist}
-Summary:       Utilities to limit user accounts to specific files using chroot() or specific commands
-Group:         Productivity/Security
+Release:       2%{?dist}
+Summary:       A set of utilities to limit Chroot
 License:       BSD and GPLv2
 URL:           http://olivier.sessink.nl/jailkit/
 Source0:       http://olivier.sessink.nl/%{name}/%{name}-%{version}.tar.bz2
 Source1:       %{name}.service
+Patch0:        jailkit_manpage_fix.patch
 
-BuildRequires: autoconf
-BuildRequires: automake
 BuildRequires: glibc-devel
 BuildRequires: libtool
 BuildRequires: python
-Requires:      python
 
 %description
 Jailkit is a set of utilities to limit user accounts to specific files using
@@ -28,6 +27,7 @@ private users that need to secure cvs, sftp, shell or daemon processes.
 
 %prep
 %setup -q
+%patch0
 
 %build
 %configure
@@ -39,12 +39,20 @@ install -p -D -m 644 %{S:1} %{buildroot}%{_unitdir}/%{name}.service
 
 %post
 %systemd_post %{S:1}
+if [ ! -f %{_sysconfdir}/shells ] ; then
+    echo "%{_sbindir}/jk_chrootsh" > %{_sysconfdir}/shells
+else
+    grep -q "^%{_sbindir}/jk_chrootsh$" %{_sysconfdir}/shells || echo "%{_sbindir}/jk_chrootsh" >> %{_sysconfdir}/shells
+fi
 
 %preun
 %systemd_preun %{S:1}
 
 %postun
 %systemd_postun_with_restart %{S:1}
+if [ ! -f %{_sysconfdir}/shells ] ; then
+    sed -i '/jk_chrootsh/d' %{_sysconfdir}/shells
+fi
 
 %files
 %doc COPYRIGHT README.txt
@@ -58,5 +66,10 @@ install -p -D -m 644 %{S:1} %{buildroot}%{_unitdir}/%{name}.service
 %{_unitdir}/%{name}.service
 
 %changelog
+* Mon Jun 10 2013 Christopher Meng <rpm@cicku.me> - 2.16-2
+- Fix error BRs.
+- Add PIE support.
+- Handle shells when %%post and %%postun.
+
 * Mon May 27 2013 Christopher Meng <rpm@cicku.me> - 2.16-1
 - Initial Package.
