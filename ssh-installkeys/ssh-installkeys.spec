@@ -1,11 +1,12 @@
 Name:              ssh-installkeys
 Version:           1.8
-Release:           1%{?dist}
+Release:           2%{?dist}
 Summary:           A tool for installing ssh keys on remote sites
 License:           BSD
 URL:               http://www.catb.org/~esr/ssh-installkeys/
 Source0:           http://www.catb.org/~esr/ssh-installkeys/%{name}-%{version}.tar.gz
 
+BuildArch:         noarch
 BuildRequires:     xmlto
 Requires:          python
 
@@ -32,5 +33,8 @@ install -p -D -m 644 %{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %{_bindir}/%{name}
 
 %changelog
+* Sat Apr 20 2013 Christopher Meng <rpm@cicku.me> - 1.8-2
+- Correct the BuildArch.
+
 * Sat Apr 20 2013 Christopher Meng <rpm@cicku.me> - 1.8-1
 - Initial Package.
