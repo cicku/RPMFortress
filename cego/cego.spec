@@ -1,12 +1,14 @@
 %global _hardened_build 1
 
 Name:              cego
-Version:           2.18.7
+Version:           2.18.8
 Release:           1%{?dist}
 Summary:           A relational and transactional database
 License:           GPLv3+
 URL:               http://www.lemke-it.com/litexec?request=pubcego&user=&lang=en
 Source0:           http://www.lemke-it.com/%{name}-%{version}.tar.gz
+Source1:           %{name}.service
+Source2:           %{name}.sysconfig
 
 BuildRequires:     chrpath
 BuildRequires:     lfcbase-devel
@@ -14,6 +16,11 @@ BuildRequires:     lfcxml-devel
 BuildRequires:     libtool
 BuildRequires:     ncurses-devel
 BuildRequires:     readline-devel
+BuildRequires:     systemd
+Requires(pre):     shadow-utils
+Requires(post):    systemd
+Requires(preun):   systemd
+Requires(postun):  systemd
 
 %description
 An open source implementation of a relational and transnational database 
@@ -34,11 +41,13 @@ developing applications that use %{name}.
 
 %prep
 %setup -q
-autoreconf -fiv
-%configure --disable-static
-sed -i -e 's/ -shared / -Wl,--as-needed\0/g' libtool
 
 %build
+autoreconf -fiv
+export CFLAGS="%{optflags}"
+export CXXFLAGS="%{optflags}"
+%configure --disable-static
+sed -i -e 's/ -shared / -Wl,--as-needed\0/g' libtool
 make %{?_smp_mflags}
 
 %install
@@ -47,24 +56,39 @@ make install DESTDIR=%{buildroot}
 find %{buildroot} -name '*.la' -exec rm -f {} ';'
 popd
 
-for f in `ls %{buildroot}/tools`
-do install -p -D -m 755 $f %{buildroot}%{_bindir}/$f
-done
-
+#rpath fix.
 for _rpbin in %{buildroot}%{_bindir}/*
 do
   chrpath --delete "${_rpbin}"
 done
 
+#Systemd support.
+install -p -D -m 644 %{S:1} %{buildroot}%{_unitdir}/%{name}.service
+install -p -D -m 644 %{S:2} %{buildroot}%{_sysconfdir}/sysconfig/%{name}
+
+%pre
+getent group %{name} >/dev/null || groupadd -r %{name}
+getent passwd %{name} >/dev/null || \
+    useradd -r -g %{name} -d %{_localstatedir}/lib/%{name} -s /sbin/nologin \
+    -c "Cego Database Server" %{name}
+exit 0
+
 %post -p /sbin/ldconfig
+%systemd_post %{S:1}
+
+%preun
+%systemd_preun %{S:1}
 
 %postun -p /sbin/ldconfig
+%systemd_postun_with_restart %{S:1}
 
 %check
 ./checkDB base && ./checkDB gate
 
 %files
 %doc COPYING README TODO
+%config(noreplace) %{_sysconfdir}/sysconfig/%{name}
+%{_unitdir}/%{name}.service
 %{_bindir}/*
 %{_libdir}/*.so.*
 
@@ -73,6 +97,9 @@ done
 %{_libdir}/*.so
 
 %changelog
+* Sat Jun 08 2013 Christopher Meng <rpm@cicku.me> - 2.18.8-1
+- New release with correct FSF address.
+
 * Sun May 26 2013 Christopher Meng <rpm@cicku.me> - 2.18.7-1
 - New release.
 
