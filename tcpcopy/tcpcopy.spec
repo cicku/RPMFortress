@@ -1,10 +1,10 @@
 Name:           tcpcopy
-Version:        0.7.0
-Release:        2%{?dist}
+Version:        0.8.0
+Release:        3%{?dist}
 Summary:        An online request replication tool
 License:        BSD
-URL:            http://code.google.com/p/tcpcopy
-Source0:        http://%{name}.googlecode.com/files/%{name}-%{version}.tar.gz
+URL:            https://github.com/wangbin579/tcpcopy
+Source0:        https://tcpcopy.googlecode.com/files/fedora_%{name}-%{version}.tar.gz
 BuildRequires:  libnetfilter_queue-devel
 Requires:       iptables
 
@@ -21,6 +21,7 @@ bandwidth and CPU load.
 %setup -q
 
 %build
+export CPPFLAGS="%{optflags}"
 %configure
 make %{?_smp_mflags}
 
@@ -33,7 +34,16 @@ make install DESTDIR=%{buildroot}
 %{_bindir}/intercept
 
 %changelog
-* Fri May 21 2013 Christopher Meng <rpm@cicku.me> - 0.7.0-2
+* Fri Jun 21 2013 Christopher Meng <rpm@cicku.me> - 0.8.0-3
+- Optimize the build sction.
+
+* Wed Jun 12 2013 Christopher Meng <rpm@cicku.me> - 0.8.0-2
+- Remove bundled libraries.
+
+* Fri Jun 07 2013 Christopher Meng <rpm@cicku.me> - 0.8.0-1
+- New upstream release.
+
+* Tue May 21 2013 Christopher Meng <rpm@cicku.me> - 0.7.0-2
 - Fix the incorrect license.
 
 * Wed May 01 2013 Christopher Meng <rpm@cicku.me> - 0.7.0-1
