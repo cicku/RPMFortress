@@ -3,7 +3,7 @@
 %global dname   irkerd
 
 Name:              irker
-Version:           1.19
+Version:           1.20
 Release:           1%{?dist}
 Summary:           IRC Message Relay
 License:           BSD
@@ -16,6 +16,9 @@ BuildRequires:     systemd
 BuildRequires:     xmlto
 Requires:          python-irc
 Requires:          python-simplejson
+Requires(post):    systemd
+Requires(preun):   systemd
+Requires(postun):  systemd
 BuildArch:         noarch
 
 %description
@@ -53,5 +56,8 @@ install -p -D -m 644 %{S:1} %{buildroot}%{_unitdir}/%{dname}.service
 %{hookdir}/irkerhook.py
 
 %changelog
+* Tue May 21 2013 Christopher Meng <rpm@cicku.me> - 1.20-1
+- New release.
+
 * Mon May 06 2013 Christopher Meng <rpm@cicku.me> - 1.19-1
 - Initial Package.
