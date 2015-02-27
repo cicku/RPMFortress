@@ -1,0 +1,32 @@
+From 446f712dba85e03616cb6ab620b912727eb7ade7 Mon Sep 17 00:00:00 2001
+From: Christopher Meng <i@cicku.me>
+Date: Thu, 10 Jul 2014 11:36:00 +0800
+Subject: [PATCH] dee-qt cmakefile multi lib support
+
+---
+ CMakeLists.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index e7b3d00..424f879 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -86,7 +86,7 @@ add_subdirectory(tests)
+ set(INCLUDE_INSTALL_DIR include/lib${DEE_QT_LIBNAME})
+ 
+ install(TARGETS ${DEE_QT_LIBNAME}
+-    LIBRARY DESTINATION lib/${CMAKE_LIBRARY_ARCHITECTURE}${LIB_SUFFIX}
++    LIBRARY DESTINATION lib${LIB_SUFFIX}/${CMAKE_LIBRARY_ARCHITECTURE}${LIB_SUFFIX}
+     )
+ 
+ install(FILES deelistmodel.h
+@@ -101,5 +101,5 @@ configure_file (libdee-qt.pc.in
+     ${CMAKE_CURRENT_BINARY_DIR}/${QT_DEE_PKGCONFIG_FILE} @ONLY)
+ 
+ install(FILES  ${CMAKE_CURRENT_BINARY_DIR}/${QT_DEE_PKGCONFIG_FILE}
+-    DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/${CMAKE_LIBRARY_ARCHITECTURE}/pkgconfig
++    DESTINATION ${LIB_INSTALL_DIR}/${CMAKE_LIBRARY_ARCHITECTURE}/pkgconfig
+     )
+-- 
+2.0.0
+
